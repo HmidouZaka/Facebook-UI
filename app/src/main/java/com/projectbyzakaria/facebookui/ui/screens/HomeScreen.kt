@@ -17,14 +17,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.projectbyzakaria.facebookui.R
 import com.projectbyzakaria.facebookui.ui.theme.FacebookUITheme
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -42,7 +46,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
 ) {
 
-
+    val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0)
 
     Scaffold(
@@ -117,31 +121,43 @@ fun HomeScreen(
 
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
 
                     Tab(
                         selected = pagerState.currentPage == 0,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(0)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.home),
+                            painter = painterResource(id = if (pagerState.currentPage == 0) R.drawable.selected_home else R.drawable.home),
                             contentDescription = "home",
                             modifier = Modifier
                                 .size(40.dp)
                                 .padding(6.dp),
 
-                        )
+                            )
                     }
 
                     Tab(
                         selected = pagerState.currentPage == 1,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(1)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.group),
+                            painter = painterResource(id = if (pagerState.currentPage == 1) R.drawable.selected_group else R.drawable.group),
                             contentDescription = "group",
                             modifier = Modifier
                                 .size(40.dp)
@@ -151,11 +167,17 @@ fun HomeScreen(
 
                     Tab(
                         selected = pagerState.currentPage == 2,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(2)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.videos),
+                            painter = painterResource(id = if (pagerState.currentPage == 2) R.drawable.selected_videos else R.drawable.videos),
                             contentDescription = "video",
                             modifier = Modifier
                                 .size(40.dp)
@@ -165,11 +187,17 @@ fun HomeScreen(
 
                     Tab(
                         selected = pagerState.currentPage == 3,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(3)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.store),
+                            painter = painterResource(id = if (pagerState.currentPage == 3) R.drawable.selected_store else R.drawable.store),
                             contentDescription = "store",
                             modifier = Modifier
                                 .size(40.dp)
@@ -179,22 +207,40 @@ fun HomeScreen(
 
                     Tab(
                         selected = pagerState.currentPage == 4,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(4)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
+
                         Icon(
-                            painter = painterResource(id = R.drawable.notifications),
+                            painter = painterResource(
+                                id = if (pagerState.currentPage == 4)
+                                    R.drawable.selected_notification
+                                else R.drawable.notification
+                            ),
                             contentDescription = "notification",
                             modifier = Modifier
                                 .size(40.dp)
                                 .padding(6.dp)
                         )
+
                     }
 
                     Tab(
-                        selected = pagerState .currentPage== 5,
-                        onClick = { },
-                        modifier = Modifier.height(50.dp)
+                        selected = pagerState.currentPage == 5,
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(5)
+                            }
+                        },
+                        modifier = Modifier.height(50.dp),
+                        selectedContentColor = MaterialTheme.colorScheme.primary,
+                        unselectedContentColor = MaterialTheme.colorScheme.secondary
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.menu),
@@ -212,16 +258,16 @@ fun HomeScreen(
         Column(
             modifier = Modifier.padding(it)
         ) {
-           HorizontalPager(pageCount = 6, state = pagerState) {
-               when(it){
-                   0 -> MainScreen(Modifier.fillMaxSize())
-                   1 -> GroupScreen(Modifier.fillMaxSize())
-                   2 -> VideoScreen(Modifier.fillMaxSize())
-                   3 -> StoreScreen(Modifier.fillMaxSize())
-                   4 -> NotificationsScreen(Modifier.fillMaxSize())
-                   5 -> MenuScreen(Modifier.fillMaxSize())
-               }
-           }
+            HorizontalPager(pageCount = 6, state = pagerState) {
+                when (it) {
+                    0 -> MainScreen(Modifier.fillMaxSize())
+                    1 -> GroupScreen(Modifier.fillMaxSize())
+                    2 -> VideoScreen(Modifier.fillMaxSize())
+                    3 -> StoreScreen(Modifier.fillMaxSize())
+                    4 -> NotificationsScreen(Modifier.fillMaxSize())
+                    5 -> MenuScreen(Modifier.fillMaxSize())
+                }
+            }
         }
     }
 
