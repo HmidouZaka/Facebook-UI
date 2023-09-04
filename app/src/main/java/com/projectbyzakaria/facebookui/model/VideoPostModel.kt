@@ -1,7 +1,7 @@
 package com.projectbyzakaria.facebookui.model
 
-data class NormalPostModel(
-    val image:Int,
+data class VideoPostModel(
+    val video:Int,
     val userImage:Int,
     val userName:String,
     val time:String,
@@ -12,6 +12,5 @@ data class NormalPostModel(
     val text:String? = null,
     val keywords :List<String> = emptyList(),
     val settingsText:String? = null,
-    val comments:List<Comment> = emptyList(),
-    val isShowComments:Boolean = false
+    val comments:List<Comment> = emptyList()
 )

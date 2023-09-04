@@ -2,7 +2,9 @@ package com.projectbyzakaria.facebookui.ui.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +43,7 @@ fun TextPost(text:String?,keywords:List<String>) {
                     append(text)
                 }
                 if (keywords.isNotEmpty()) {
-                    append("\n\n\n\n\n")
+                    append("\n\n")
                     keywords.forEach {
                         withStyle(
                             SpanStyle(
@@ -63,17 +65,21 @@ fun TextPost(text:String?,keywords:List<String>) {
             overflow = TextOverflow.Ellipsis,
             fontFamily = FontFamily(Font(R.font.robotoregular))
         )
-        Text(
-            text = if (isShowed) "show less" else "show more...",
-            textAlign = TextAlign.Start,
-            color = MaterialTheme.colorScheme.secondary,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.W300,
-            modifier = Modifier
-                .padding(start = 8.dp, bottom = 8.dp)
-                .clickable(onClick = {
-                    isShowed = !isShowed
-                })
-        )
+        if (text.length >= 250 || keywords.isNotEmpty()){
+            Text(
+                text = if (isShowed) "show less" else "show more...",
+                textAlign = TextAlign.Start,
+                color = MaterialTheme.colorScheme.secondary,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.W300,
+                modifier = Modifier
+                    .padding(start = 8.dp, bottom = 8.dp)
+                    .clickable(onClick = {
+                        isShowed = !isShowed
+                    })
+            )
+        }else{
+            Spacer(modifier = Modifier.size(8.dp))
+        }
     }
 }

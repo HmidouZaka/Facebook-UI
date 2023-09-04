@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -51,12 +52,13 @@ fun UserHeader(
             contentDescription = "image",
             modifier = Modifier
                 .padding(8.dp)
-                .size(50.dp)
-                .clip(CircleShape)
+                .size(44.dp)
+                .clip(CircleShape),
+            contentScale = ContentScale.Crop
         )
         Column(
             modifier = Modifier
-                .padding(8.dp)
+                .padding(top=8.dp,bottom=8.dp,end=8.dp)
                 .height(50.dp)
                 .weight(1f),
             verticalArrangement = Arrangement.Center
@@ -65,7 +67,7 @@ fun UserHeader(
                 text = name,
                 textAlign = TextAlign.Start,
                 color = MaterialTheme.colorScheme.onBackground,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis

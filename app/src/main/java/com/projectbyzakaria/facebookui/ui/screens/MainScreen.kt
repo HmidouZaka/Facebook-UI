@@ -49,15 +49,15 @@ import com.projectbyzakaria.facebookui.data.StoryList
 import com.projectbyzakaria.facebookui.model.NormalPostModel
 import com.projectbyzakaria.facebookui.model.Story
 import com.projectbyzakaria.facebookui.ui.components.NormalPost
+import com.projectbyzakaria.facebookui.utils.Response
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, listPost: List<Response>) {
     var storyListData = remember {
         StoryList().getData()
     }
     LazyColumn(
-        modifier = modifier.background(Color(0xFF74767A)),
+        modifier = modifier.background(Color(0xFFA5A8AC)),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
@@ -125,7 +125,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                     width = 1.dp,
                                     color = Color(0xFFDADADA),
                                     shape = RoundedCornerShape(12.dp)
-                                ).clickable {  }
+                                )
+                                .clickable { }
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.myprofilelogo),
@@ -176,7 +177,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                     width = 1.dp,
                                     color = Color(0xFFDADADA),
                                     shape = RoundedCornerShape(12.dp)
-                                ).clickable {  }
+                                )
+                                .clickable { }
                         ) {
                             Image(
                                 painter = painterResource(id = item.storyImage),
@@ -185,14 +187,19 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                 contentScale = ContentScale.Crop
                             )
 
-                            Spacer(modifier = Modifier.fillMaxSize()
-                                .background(
-                                    brush = Brush.verticalGradient(listOf(
-                                        Color(0xFFFFFF),
-                                        Color(0xFFFFFF),
-                                        Color(0xB4424242),
-                                    ))
-                                ))
+                            Spacer(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(
+                                        brush = Brush.verticalGradient(
+                                            listOf(
+                                                Color(0xFFFFFF),
+                                                Color(0xFFFFFF),
+                                                Color(0xB4424242),
+                                            )
+                                        )
+                                    )
+                            )
 
 
                             Image(
@@ -224,14 +231,38 @@ fun MainScreen(modifier: Modifier = Modifier) {
                                 fontSize = 13.sp,
                                 color = MaterialTheme.colorScheme.background,
 
-                            )
+                                )
                         }
                     }
                 }
             }
         }
-        items(10){
-            NormalPost(
+        items(listPost) {
+            when (it) {
+                is Response.AdsPost -> {}
+                is Response.GroupPost -> {}
+                is Response.NormalPost -> it.normalPost?.let { it1 ->
+                    NormalPost(
+                        normalPost = it1,
+                        modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.background)
+                    )
+                }
+
+                is Response.PeopleRecommendation -> {}
+                is Response.Reals -> {}
+                is Response.VideoPost -> {}
+            }
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun MainScreen() {
+    MainScreen(
+        Modifier.fillMaxSize(), listOf(
+            Response.NormalPost(
                 normalPost = NormalPostModel(
                     image = R.drawable.profileimage1,
                     userImage = R.drawable.profileimage6,
@@ -278,17 +309,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                         "keyword 1",
                     )
                 ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.background)
             )
-        }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreen() {
-    MainScreen(Modifier.fillMaxSize())
+        )
+    )
 }

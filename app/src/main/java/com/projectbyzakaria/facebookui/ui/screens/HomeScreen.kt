@@ -27,6 +27,8 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.projectbyzakaria.facebookui.R
+import com.projectbyzakaria.facebookui.ui.presintation.MainViewModel
 import com.projectbyzakaria.facebookui.ui.theme.FacebookUITheme
 import kotlinx.coroutines.launch
 
@@ -44,6 +47,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
+    viewModel: MainViewModel
 ) {
 
     val coroutineScope = rememberCoroutineScope()
@@ -260,7 +264,14 @@ fun HomeScreen(
         ) {
             HorizontalPager(pageCount = 6, state = pagerState) {
                 when (it) {
-                    0 -> MainScreen(Modifier.fillMaxSize())
+                    0 -> {
+                        val posts by viewModel.posts.collectAsState()
+                        if (posts.isEmpty()){
+
+                        }else{
+                            MainScreen(Modifier.fillMaxSize(),posts)
+                        }
+                    }
                     1 -> GroupScreen(Modifier.fillMaxSize())
                     2 -> VideoScreen(Modifier.fillMaxSize())
                     3 -> StoreScreen(Modifier.fillMaxSize())
@@ -274,11 +285,3 @@ fun HomeScreen(
 
 }
 
-
-@Preview
-@Composable
-fun HomeScreen() {
-    FacebookUITheme {
-        HomeScreen(modifier = Modifier.fillMaxSize())
-    }
-}

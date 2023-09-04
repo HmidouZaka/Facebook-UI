@@ -1,6 +1,6 @@
 package com.projectbyzakaria.facebookui.model
 
-data class NormalPostModel(
+data class AdsPostModel(
     val image:Int,
     val userImage:Int,
     val userName:String,
@@ -9,9 +9,11 @@ data class NormalPostModel(
     val numberOfShares:Int,
     val numberOfLikes:Int,
     val icon:Int,
+    val textLink: String,
+    val textAds: String,
     val text:String? = null,
     val keywords :List<String> = emptyList(),
     val settingsText:String? = null,
-    val comments:List<Comment> = emptyList(),
-    val isShowComments:Boolean = false
+    val isWhatsAppAds:Boolean = true,
+    val comments:List<Comment> = emptyList()
 )

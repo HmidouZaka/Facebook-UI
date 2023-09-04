@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.projectbyzakaria.facebookui.R
 
 @Composable
-fun BottomText(
+fun SettingText(
     text: String,
     max: Int = 4,
     modifier: Modifier = Modifier,
@@ -92,10 +92,10 @@ fun BottomText(
 
 @Preview(showBackground = true)
 @Composable
-fun BottomText(
+fun SettingText(
 
 ) {
-    BottomText(
+    SettingText(
         text = "Whatever\n" +
                 "Where does it come from?\n" +
                 "Contrary to popular belief, Lorem Ipsum is not simply random text. \n" +
