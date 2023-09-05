@@ -4,6 +4,7 @@ import MenuScreen
 import NotificationsScreen
 import StoreScreen
 import VideoScreen
+import android.view.LayoutInflater
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -37,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.projectbyzakaria.facebookui.R
 import com.projectbyzakaria.facebookui.ui.presintation.MainViewModel
 import com.projectbyzakaria.facebookui.ui.theme.FacebookUITheme
@@ -267,7 +269,15 @@ fun HomeScreen(
                     0 -> {
                         val posts by viewModel.posts.collectAsState()
                         if (posts.isEmpty()){
-
+                            Box(
+                                modifier = Modifier.fillMaxSize().background(Color(0xFFA5A8AC)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                AndroidView(factory = { context->
+                                    val progressBar = LayoutInflater.from(context).inflate(R.layout.facebook_progress,null,false)
+                                    progressBar
+                                }, modifier = Modifier.size(40.dp))
+                            }
                         }else{
                             MainScreen(Modifier.fillMaxSize(),posts)
                         }

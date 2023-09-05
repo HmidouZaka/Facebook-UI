@@ -1,6 +1,7 @@
 package com.projectbyzakaria.facebookui.data
 
 import com.projectbyzakaria.facebookui.R
+import com.projectbyzakaria.facebookui.model.AdsPostModel
 import com.projectbyzakaria.facebookui.model.Comment
 import com.projectbyzakaria.facebookui.model.NormalPostModel
 import com.projectbyzakaria.facebookui.utils.Response
@@ -8,6 +9,10 @@ import kotlinx.coroutines.delay
 
 class PostData {
 
+    val textPotine = """
+        Vladimir Vladimirovich Putin[c] (born 7 October 1952) is a Russian politician and former intelligence officer who has served as President of Russia since 2012. Putin has held continuous positions as president or prime minister since 1999:[d] as prime minister from 1999 to 2000 and from 2008 to 2012, and as president from 2000 to 2008 and since 2012.[e][7]
+        Putin worked as a KGB foreign intelligence officer for 16 years, rising to the rank of lieutenant colonel before resigning in 1991 to begin a political career in Saint Petersburg. In 1996, he moved to Moscow to join the administration of President Boris Yeltsin. He briefly served as the director of the Federal Security Service (FSB) and as secretary of the Security Council of Russia before being appointed prime minister in August 1999. Following Yeltsin's resignation, Putin became acting president and, in less than four months, was elected to his first term as president. He was subsequently reelected in 2004. Due to constitutional limitations of two consecutive presidential terms, Putin served as prime minister again from 2008 to 2012 under Dmitry Medvedev. He returned to the presidency in 2012, following an election marked by allegations of fraud and protests, and was reelected in 2018. In April 2021, after a referendum, he signed into law constitutional amendments that included one allowing him to run for reelection twice more, potentially extending his presidency to 2036.[8][9]
+    """.trimIndent()
     private val data = listOf<Response>(
         Response.NormalPost(
             NormalPostModel(
@@ -51,7 +56,7 @@ class PostData {
                 ),
                 isShowComments = true
             ),
-            ),
+        ),
         Response.NormalPost(
             NormalPostModel(
                 image = R.drawable.imagepost10,
@@ -62,8 +67,8 @@ class PostData {
                 numberOfLikes = 35,
                 numberOfComments = 5,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text =null,
-                keywords = listOf("news","al hadat"),
+                text = textPotine,
+                keywords = listOf("news", "al hadat", "potine"),
                 settingsText = """Lorem ipsum dolor sit amet, consectetur
                     |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
                     |feugiat sollicitudin. Vivamus vel justo
@@ -74,10 +79,51 @@ class PostData {
                     |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 comments = listOf(
                     Comment(
-                        userImage = R.drawable.profileimage8,
+                        userImage = R.drawable.profileimage9,
                         comment = "\uD83E\uDD73",
                         numberOfLikes = 0,
-                        name = "khalid"
+                        name = "khalid pilano"
+                    ),
+                    Comment(
+                        userImage = R.drawable.angry,
+                        comment = "I can't understand that",
+                        numberOfLikes = 0,
+                        name = "taryna micato"
+                    ),
+                    Comment(
+                        userImage = R.drawable.alhadatlogo,
+                        comment = "this is a not real comment it is fake ok ? have a nice day",
+                        numberOfLikes = 0,
+                        name = "lopa finaco"
+                    ),
+                    Comment(
+                        userImage = R.drawable.imagepost7,
+                        comment = "have a nice day",
+                        numberOfLikes = 0,
+                        name = "jemy lkico"
+                    ), Comment(
+                        userImage = R.drawable.myprofilelogo,
+                        comment = "me same this is a not real comment",
+                        numberOfLikes = 0,
+                        name = "arami125"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage8,
+                        comment = "this a not good news",
+                        numberOfLikes = 0,
+                        name = "men"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage2,
+                        comment = "I know ",
+                        numberOfLikes = 5,
+                        name = "lola"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage6,
+                        comment = "what is this",
+                        numberOfLikes = 20,
+                        name = "jamal"
                     )
                 ),
                 isShowComments = false
@@ -93,13 +139,20 @@ class PostData {
                 numberOfLikes = 15,
                 numberOfComments = 6,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "",
-                keywords = listOf("", ""),
-                settingsText = null,
+                text = "hi everyone just I want asq hear in facebook \n if you have any comment or any thing put it in blow I mean comments ok  good day everyone it is just normal flow for everyone",
+                keywords = listOf("fun", "keyword", "tags", "tag2"),
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 comments = listOf(
                     Comment(
                         userImage = R.drawable.profileimage5,
-                        comment = "I love traveling too!",
+                        comment = "I can't understand",
                         numberOfLikes = 2,
                         name = "david"
                     ),
@@ -115,7 +168,8 @@ class PostData {
                         numberOfLikes = 3,
                         name = "lucas"
                     )
-                )
+                ),
+                isShowComments = true
             )
         ),
         Response.NormalPost(
@@ -128,8 +182,8 @@ class PostData {
                 numberOfLikes = 25,
                 numberOfComments = 4,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Cooking up a storm in the kitchen today!",
-                keywords = listOf("cooking", "food"),
+                text = null,
+                keywords = listOf(),
                 settingsText = null,
                 comments = listOf(
                     Comment(
@@ -151,7 +205,7 @@ class PostData {
                         name = "ava"
                     )
                 ),
-                isShowComments = true
+                isShowComments = false
             )
         ),
         Response.NormalPost(
@@ -164,9 +218,28 @@ class PostData {
                 numberOfLikes = 18,
                 numberOfComments = 7,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Spent the weekend hiking in the mountains!",
-                keywords = listOf("hiking", "outdoors"),
-                settingsText = null,
+                text = "hi gays what do you think about this two images I think it is a fun animals like if it happy or " +
+                        "what please support me by put a comment and click like button in bottom left thanks everyone hi gays what do you think about this two images I think it is " +
+                        "a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone",
+                keywords = listOf(
+                    "fun",
+                    "animals",
+                    "fun-animals",
+                    "fun",
+                    "animals",
+                    "fun-animals",
+                    "fun",
+                    "animals",
+                    "fun-animals"
+                ),
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 comments = listOf(
                     Comment(
                         userImage = R.drawable.profileimage7,
@@ -186,7 +259,8 @@ class PostData {
                         numberOfLikes = 2,
                         name = "amelia"
                     )
-                )
+                ),
+                isShowComments = true
             )
         ),
         Response.NormalPost(
@@ -199,8 +273,51 @@ class PostData {
                 numberOfLikes = 30,
                 numberOfComments = 5,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Just finished reading a great book!",
+                text = "hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone",
                 keywords = listOf("books", "reading"),
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage8,
+                        comment = "What book was it?",
+                        numberOfLikes = 1,
+                        name = "sophia"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage6,
+                        comment = "I love reading too!",
+                        numberOfLikes = 3,
+                        name = "jack"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage4,
+                        comment = "Share your thoughts on the book!",
+                        numberOfLikes = 1,
+                        name = "emma"
+                    )
+                ),
+                isShowComments = false
+            )
+        ),
+        Response.NormalPost(
+            NormalPostModel(
+                image = R.drawable.imagepost1,
+                userName = "noah2",
+                userImage = R.drawable.profileimage2,
+                time = "6h .",
+                numberOfShares = 1,
+                numberOfLikes = 30,
+                numberOfComments = 5,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                text = "hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone",
+                keywords = listOf(),
                 settingsText = null,
                 comments = listOf(
                     Comment(
@@ -222,7 +339,7 @@ class PostData {
                         name = "emma"
                     )
                 ),
-                isShowComments = true
+                isShowComments = false
             )
         ),
         Response.NormalPost(
@@ -235,9 +352,9 @@ class PostData {
                 numberOfLikes = 22,
                 numberOfComments = 8,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Just attended an amazing concert last night!",
+                text = null,
                 keywords = listOf("music", "concert"),
-                settingsText = null,
+                settingsText = "hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone hi gays what do you think about this two images I think it is a fun animals like if it happy or what please support me by put a comment and click like button in bottom left thanks everyone",
                 comments = listOf(
                     Comment(
                         userImage = R.drawable.profileimage2,
@@ -307,8 +424,8 @@ class PostData {
                 numberOfLikes = 19,
                 numberOfComments = 5,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Just adopted a cute puppy today! Meet Max 🐶❤️",
-                keywords = listOf("pets", "puppy"),
+                text = textPotine,
+                keywords = listOf("pets", "puppy", "potine"),
                 settingsText = null,
                 comments = listOf(
                     Comment(
@@ -329,7 +446,7 @@ class PostData {
                         numberOfLikes = 2,
                         name = "emma"
                     )
-                )
+                ), isShowComments = true
             )
         ),
 
@@ -343,9 +460,9 @@ class PostData {
                 numberOfLikes = 24,
                 numberOfComments = 4,
                 icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-                text = "Had an amazing time at the beach today!",
-                keywords = listOf("beach", "fun"),
-                settingsText = null,
+                text = "Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!",
+                keywords = listOf("beach", "fun", "Had an amazing time at the beach today!"),
+                settingsText = "Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!Had an amazing time at the beach today!",
                 comments = listOf(
                     Comment(
                         userImage = R.drawable.profileimage7,
@@ -403,7 +520,58 @@ class PostData {
                 )
             )
         ),
-
+        Response.AdsPost(
+            ads = AdsPostModel(
+                image = R.drawable.adspost2,
+                userImage = R.drawable.profileimage6,
+                userName = "John Doe",
+                time = "2h .",
+                numberOfComments = 10,
+                numberOfShares = 5,
+                numberOfLikes = 100,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                textLink = "Learn More",
+                textAds = "Check out our latest product!",
+                text = "Introducing the all-new XYZ Smartphone. It's faster, smarter, and more affordable than ever!",
+                keywords = listOf("Smartphone", "XYZ", "New Release"),
+                settingsText = "Sponsored",
+                isWhatsAppAds = true,
+                isShowComments = true,
+                comments = listOf(
+                    Comment(R.drawable.profileimage5, "Great product!", 15, "Alice Johnson"),
+                    Comment(R.drawable.profileimage3, "I want one!", 5, "Bob Smith"),
+                    Comment(R.drawable.myprofilelogo, "Impressive features!", 8, "Eva Anderson")
+                )
+            )
+        ),
+        Response.AdsPost(
+            ads = AdsPostModel(
+                image = R.drawable.adspost3,
+                userImage = R.drawable.myprofilelogo,
+                userName = "Fast Delivery",
+                time = "1 day ago",
+                numberOfComments = 5,
+                numberOfShares = 3,
+                numberOfLikes = 50,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                textLink = "Order Now",
+                textAds = "Get your favorite food delivered to your doorstep!",
+                text = """
+            Craving your favorite dishes from local restaurants but don't want to go out? 
+            We've got you covered. Order now and enjoy a hassle-free delivery experience. 
+            With our fast and reliable service, your cravings are just a click away!
+        """.trimIndent(),
+                keywords = listOf("Delivery Service", "Food Delivery", "Local Restaurants"),
+                settingsText = "Exclusive Offer", // Custom settings text
+                isWhatsAppAds = true,
+                isShowComments = true,
+                comments = listOf(
+                    Comment(R.drawable.profileimage6, "Always on time!", 12, "Anna Lee"),
+                    Comment(R.drawable.myprofilelogo, "Love the variety!", 8, "David Clark"),
+                    Comment(R.drawable.profileimage3, "Great service!", 10, "Sophia Smith")
+                )
+            )
+        ),
         Response.NormalPost(
             NormalPostModel(
                 image = R.drawable.profileimage8,
@@ -438,12 +606,101 @@ class PostData {
                     )
                 )
             )
-        )
+        ),
+        Response.AdsPost(
+            ads = AdsPostModel(
+                image = R.drawable.adspost1,
+                userImage = R.drawable.profileimage9,
+                userName = "TechZone",
+                time = "3 hours ago",
+                numberOfComments = 15,
+                numberOfShares = 8,
+                numberOfLikes = 120,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                textLink = "Learn More",
+                textAds = "Upgrade Your Computing Experience with Our Latest PCs!",
+                text = """
+            Introducing the all-new TechZone PCs. Experience lightning-fast performance, 
+            stunning graphics, and unparalleled productivity. Whether you're a gamer, 
+            designer, or professional, our PCs are built to meet your needs.
+        """.trimIndent(),
+                keywords = listOf("PCs", "Computer Hardware", "Gaming PC"),
+                settingsText = "Limited Time Offer",
+                isWhatsAppAds = true,
+                isShowComments = false,
+                comments = listOf(
+                    Comment(R.drawable.profileimage9, "I need one for gaming!", 10, "John Doe"),
+                    Comment(R.drawable.care, "Impressive specs!", 8, "Jane Smith"),
+                    Comment(R.drawable.profileimage3, "Can't wait to upgrade!", 12, "David Clark")
+                )
+            )
+        ),
+        Response.AdsPost(
+            ads = AdsPostModel(
+                image = R.drawable.adspost4,
+                userImage = R.drawable.myprofilelogo,
+                userName = "Delicious Eats",
+                time = "2 hours ago",
+                numberOfComments = 10,
+                numberOfShares = 5,
+                numberOfLikes = 100,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                textLink = "Order Now",
+                textAds = "Craving your favorite food? We deliver!",
+                text = "Satisfy your cravings with Delicious Eats. Explore a wide range of cuisines and enjoy doorstep delivery. Order now!",
+                keywords = listOf("Food Delivery", "Cuisine", "Online Ordering"),
+                settingsText = "Exclusive Offer",
+                isWhatsAppAds = true,
+                isShowComments = false,
+                comments = listOf(
+                    Comment(
+                        R.drawable.profileimage9,
+                        "Their pizza is amazing!",
+                        15,
+                        "Alice Johnson"
+                    ),
+                    Comment(
+                        R.drawable.profileimage2,
+                        "I order from them regularly.",
+                        5,
+                        "Bob Smith"
+                    ),
+                    Comment(R.drawable.profileimage6, "Quick delivery!", 8, "Eva Anderson")
+                )
+            )
+        ),
+        Response.AdsPost(
+            ads = AdsPostModel(
+                image = R.drawable.adspost5,
+                userImage = R.drawable.myprofilelogo,
+                userName = "Tasty Bites",
+                time = "1 day ago",
+                numberOfComments = 8,
+                numberOfShares = 3,
+                numberOfLikes = 70,
+                icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+                textLink = "Reserve a Table",
+                textAds = "Experience the flavors of our exquisite dishes!",
+                text = """
+            Discover a culinary journey like no other at Tasty Bites. Our chefs prepare 
+            dishes that will tantalize your taste buds. Reserve a table for an unforgettable dining experience.
+        """.trimIndent(),
+                keywords = listOf("Restaurant", "Cuisine", "Fine Dining"),
+                settingsText = "Special Promotion",
+                isWhatsAppAds = true,
+                isShowComments = false,
+                comments = listOf(
+                    Comment(R.drawable.profileimage4, "I love their seafood!", 12, "Anna Lee"),
+                    Comment(R.drawable.profileimage7, "Great atmosphere!", 8, "David Clark"),
+                    Comment(R.drawable.profileimage6, "Mouthwatering desserts!", 10, "Sophia Smith")
+                )
+            )
+        ),
     )
 
 
     suspend fun fetchPosts(): List<Response> {
         delay(1000)
-        return data
+        return data.shuffled()
     }
 }

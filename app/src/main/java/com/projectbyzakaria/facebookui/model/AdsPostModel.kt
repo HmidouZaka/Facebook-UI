@@ -15,5 +15,6 @@ data class AdsPostModel(
     val keywords :List<String> = emptyList(),
     val settingsText:String? = null,
     val isWhatsAppAds:Boolean = true,
+    val isShowComments:Boolean = false,
     val comments:List<Comment> = emptyList()
 )

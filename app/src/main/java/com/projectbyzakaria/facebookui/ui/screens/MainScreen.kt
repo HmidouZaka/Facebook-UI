@@ -48,6 +48,7 @@ import com.projectbyzakaria.facebookui.R
 import com.projectbyzakaria.facebookui.data.StoryList
 import com.projectbyzakaria.facebookui.model.NormalPostModel
 import com.projectbyzakaria.facebookui.model.Story
+import com.projectbyzakaria.facebookui.ui.components.AdsPost
 import com.projectbyzakaria.facebookui.ui.components.NormalPost
 import com.projectbyzakaria.facebookui.utils.Response
 
@@ -239,12 +240,23 @@ fun MainScreen(modifier: Modifier = Modifier, listPost: List<Response>) {
         }
         items(listPost) {
             when (it) {
-                is Response.AdsPost -> {}
+                is Response.AdsPost -> {
+                    it.ads?.let { it1 ->
+                        AdsPost(
+                            postModel = it1,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.background)
+                        )
+                    }
+                }
                 is Response.GroupPost -> {}
                 is Response.NormalPost -> it.normalPost?.let { it1 ->
                     NormalPost(
                         normalPost = it1,
-                        modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.background)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(MaterialTheme.colorScheme.background)
                     )
                 }
 

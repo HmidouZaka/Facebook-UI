@@ -42,13 +42,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.projectbyzakaria.facebookui.R
+import com.projectbyzakaria.facebookui.model.AdsPostModel
+import com.projectbyzakaria.facebookui.model.Comment
 import com.projectbyzakaria.facebookui.model.NormalPostModel
 
 @Composable
 fun AdsPost(
-    postModel: NormalPostModel,
+    postModel: AdsPostModel,
     modifier: Modifier = Modifier,
-    isByWhatsapp: Boolean = false,
 ) {
 
     Column(
@@ -60,10 +61,14 @@ fun AdsPost(
             time = postModel.time,
             icon = postModel.icon,
             onClickClose = { },
-            onClickMore = {}
+            onClickMore = { }
         )
 
-        TextPost(text = postModel.text, keywords = postModel.keywords)
+        if (postModel.text == null && postModel.settingsText != null) {
+            SettingText(text = postModel.settingsText)
+        } else {
+            TextPost(text = postModel.text, keywords = postModel.keywords)
+        }
 
         Image(
             painter = painterResource(id = postModel.image),
@@ -73,7 +78,9 @@ fun AdsPost(
                 .heightIn(max = 300.dp),
             contentScale = ContentScale.Crop,
         )
-
+        if (postModel.text != null && postModel.settingsText != null) {
+            SettingText(text = postModel.settingsText)
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -89,11 +96,11 @@ fun AdsPost(
                     text = "mywebsite.com",
                     fontSize = 16.sp,
 
-                )
+                    )
                 Text(text = "Shop our plans")
             }
 
-            if (isByWhatsapp) {
+            if (postModel.isWhatsAppAds) {
                 Button(
                     onClick = { },
                     shape = RoundedCornerShape(8.dp),
@@ -153,6 +160,19 @@ fun AdsPost(
 
         PostActions(modifier = Modifier.fillMaxWidth())
 
+        if (postModel.isShowComments && postModel.comments.isNotEmpty()) {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+                    .background(MaterialTheme.colorScheme.secondary)
+                    .height(0.4.dp)
+            )
+            Comments(
+                comment = postModel.comments.get(0),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
 
     }
 
@@ -164,7 +184,7 @@ fun AdsPost(
 @Composable
 fun AdsPost() {
     AdsPost(
-        postModel = NormalPostModel(
+        postModel = AdsPostModel(
             image = R.drawable.profileimage8,
             userImage = R.drawable.profileimage2,
             userName = "ahmed ahmed",
@@ -173,7 +193,32 @@ fun AdsPost() {
             numberOfLikes = 103,
             numberOfShares = 6,
             icon = R.drawable.public_fill0_wght400_grad0_opsz24,
-            text = null
+            text = null,
+            textLink = "mywebsite.com",
+            textAds = "Shop our plans",
+            settingsText = "test text ".repeat(10),
+            isWhatsAppAds = false,
+            isShowComments = true,
+            comments = listOf(
+                Comment(
+                    userImage = R.drawable.profileimage8,
+                    comment = "What did you cook?",
+                    numberOfLikes = 1,
+                    name = "oliver"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage6,
+                    comment = "I need your recipe!",
+                    numberOfLikes = 1,
+                    name = "mia"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage4,
+                    comment = "Looks mouthwatering!",
+                    numberOfLikes = 1,
+                    name = "noah"
+                )
+            )
         ),
         modifier = Modifier.fillMaxWidth()
     )
@@ -183,7 +228,7 @@ fun AdsPost() {
 @Composable
 fun AdsPostText() {
     AdsPost(
-        postModel = NormalPostModel(
+        postModel = AdsPostModel(
             image = R.drawable.profileimage5,
             userImage = R.drawable.profileimage2,
             userName = "ahmed ahmed",
@@ -212,8 +257,106 @@ fun AdsPostText() {
                     "Finibus Bonorum et Malorum\" by Cicero are also reproduced in their \n" +
                     "exact original form, accompanied by English versions from the 1914 \n" +
                     "translation by H. Rackham.",
+            textLink = "mywebsite.com",
+            textAds = "Shop our plans", keywords = listOf("cooking", "food"),
+            isWhatsAppAds = true,
+            comments = listOf(
+                Comment(
+                    userImage = R.drawable.profileimage8,
+                    comment = "What did you cook?",
+                    numberOfLikes = 1,
+                    name = "oliver"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage6,
+                    comment = "I need your recipe!",
+                    numberOfLikes = 1,
+                    name = "mia"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage4,
+                    comment = "Looks mouthwatering!",
+                    numberOfLikes = 1,
+                    name = "noah"
+                )
+            )
         ),
         modifier = Modifier.fillMaxWidth(),
-        isByWhatsapp = true
+    )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun AdsPostTextWithTranslate() {
+    AdsPost(
+        postModel = AdsPostModel(
+            image = R.drawable.profileimage5,
+            userImage = R.drawable.profileimage2,
+            userName = "ahmed ahmed",
+            time = "20h .",
+            numberOfComments = 20,
+            numberOfLikes = 103,
+            numberOfShares = 6,
+            icon = R.drawable.public_fill0_wght400_grad0_opsz24,
+            text = "Whatever\n" +
+                    "Where does it come from?\n" +
+                    "Contrary to popular belief, Lorem Ipsum is not simply random text. \n" +
+                    "It has roots in a piece of classical Latin literature from 45 BC, \n" +
+                    "making it over 2000 years old. Richard McClintock, \n" +
+                    "a Latin professor at Hampden-Sydney College in Virginia, \n" +
+                    "looked up one of the more obscure Latin words, consectetur,\n" +
+                    "from a Lorem Ipsum passage, and going through the cites of the word \n" +
+                    "in classical literature, discovered the undoubtable source.\n" +
+                    "Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus \n" +
+                    "Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, \n" +
+                    "written in 45 BC. This book is a treatise on the theory of ethics,\n" +
+                    "very popular during the Renaissance. The first line of Lorem Ipsum, \n" +
+                    "\"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n" +
+                    "\n" +
+                    "The standard chunk of Lorem Ipsum used since the 1500s is reproduced \n" +
+                    "below for those interested. Sections 1.10.32 and 1.10.33 from \"de \n" +
+                    "Finibus Bonorum et Malorum\" by Cicero are also reproduced in their \n" +
+                    "exact original form, accompanied by English versions from the 1914 \n" +
+                    "translation by H. Rackham.",
+            textLink = "mywebsite.com",
+            textAds = "Shop our plans",
+            keywords = listOf("cooking", "food"),
+            isWhatsAppAds = true,
+            isShowComments = true,
+            comments = listOf(
+                Comment(
+                    userImage = R.drawable.profileimage8,
+                    comment = "What did you cook?",
+                    numberOfLikes = 1,
+                    name = "oliver"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage6,
+                    comment = "I need your recipe!",
+                    numberOfLikes = 1,
+                    name = "mia"
+                ),
+                Comment(
+                    userImage = R.drawable.profileimage4,
+                    comment = "Looks mouthwatering!",
+                    numberOfLikes = 1,
+                    name = "noah"
+                )
+            ),
+            settingsText = "Contrary to popular belief, Lorem Ipsum is not simply random text. \n" +
+                    "It has roots in a piece of classical Latin literature from 45 BC, \n" +
+                    "making it over 2000 years old. Richard McClintock, \n" +
+                    "a Latin professor at Hampden-Sydney College in Virginia, \n" +
+                    "looked up one of the more obscure Latin words, consectetur,\n" +
+                    "from a Lorem Ipsum passage, and going through the cites of the word \n" +
+                    "in classical literature, discovered the undoubtable source.\n" +
+                    "Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus \n" +
+                    "Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, \n" +
+                    "written in 45 BC. This book is a treatise on the theory of ethics,\n" +
+                    "very popular during the Renaissance. The first line of Lorem Ipsum, \n" +
+                    "\"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n"
+        ),
+        modifier = Modifier.fillMaxWidth(),
     )
 }
