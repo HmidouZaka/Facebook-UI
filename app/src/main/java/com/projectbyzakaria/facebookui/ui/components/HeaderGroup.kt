@@ -51,14 +51,19 @@ fun HeaderGroup(
         modifier = modifier
     ) {
         Box(
-            modifier = Modifier.padding(start = 8.dp,top = 8.dp,bottom = 8.dp)
+            modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom =10.dp)
         ) {
             Image(
                 painter = painterResource(id = groupImage),
                 contentDescription = "image",
                 modifier = Modifier
-                    .size(55.dp)
-                    .clip(RoundedCornerShape(15.dp)),
+                    .size(45.dp)
+                    .clip(RoundedCornerShape(15.dp))
+                    .border(
+                        width = 0.5.dp,
+                        color = Color(0xFFC2C2C2),
+                        shape = RoundedCornerShape(15.dp)
+                    ),
                 contentScale = ContentScale.Crop,
                 alignment = Alignment.Center
 
@@ -66,7 +71,8 @@ fun HeaderGroup(
             Image(
                 painter = painterResource(id = image),
                 contentDescription = "image",
-                modifier = Modifier.zIndex(1f)
+                modifier = Modifier
+                    .zIndex(1f)
                     .align(Alignment.BottomEnd)
                     .offset(4.dp, 4.dp)
                     .size(25.dp)
@@ -100,11 +106,11 @@ fun HeaderGroup(
 
                 Text(
                     text = "$name .",
-                    fontSize = 12.sp,
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.secondary,
 
-                )
+                    )
                 Spacer(modifier = Modifier.padding(end = 4.dp))
                 Text(
                     text = time,

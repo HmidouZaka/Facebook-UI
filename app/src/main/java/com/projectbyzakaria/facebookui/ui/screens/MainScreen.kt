@@ -49,7 +49,9 @@ import com.projectbyzakaria.facebookui.data.StoryList
 import com.projectbyzakaria.facebookui.model.NormalPostModel
 import com.projectbyzakaria.facebookui.model.Story
 import com.projectbyzakaria.facebookui.ui.components.AdsPost
+import com.projectbyzakaria.facebookui.ui.components.GroupPost
 import com.projectbyzakaria.facebookui.ui.components.NormalPost
+import com.projectbyzakaria.facebookui.ui.components.PeopleRecommendation
 import com.projectbyzakaria.facebookui.utils.Response
 
 @Composable
@@ -250,7 +252,17 @@ fun MainScreen(modifier: Modifier = Modifier, listPost: List<Response>) {
                         )
                     }
                 }
-                is Response.GroupPost -> {}
+
+                is Response.GroupPost -> {
+                    it.group?.let { it1 ->
+                        GroupPost(
+                            normalPost = it1, modifier = Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.background)
+                        )
+                    }
+                }
+
                 is Response.NormalPost -> it.normalPost?.let { it1 ->
                     NormalPost(
                         normalPost = it1,
@@ -260,7 +272,17 @@ fun MainScreen(modifier: Modifier = Modifier, listPost: List<Response>) {
                     )
                 }
 
-                is Response.PeopleRecommendation -> {}
+                is Response.PeopleRecommendation -> {
+                    it.people?.let { it1 ->
+                        PeopleRecommendation(
+                            list = it1,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.background)
+                        )
+                    }
+                }
+
                 is Response.Reals -> {}
                 is Response.VideoPost -> {}
             }

@@ -3,7 +3,9 @@ package com.projectbyzakaria.facebookui.data
 import com.projectbyzakaria.facebookui.R
 import com.projectbyzakaria.facebookui.model.AdsPostModel
 import com.projectbyzakaria.facebookui.model.Comment
+import com.projectbyzakaria.facebookui.model.GroupPostModel
 import com.projectbyzakaria.facebookui.model.NormalPostModel
+import com.projectbyzakaria.facebookui.model.People
 import com.projectbyzakaria.facebookui.utils.Response
 import kotlinx.coroutines.delay
 
@@ -534,7 +536,7 @@ class PostData {
                 textAds = "Check out our latest product!",
                 text = "Introducing the all-new XYZ Smartphone. It's faster, smarter, and more affordable than ever!",
                 keywords = listOf("Smartphone", "XYZ", "New Release"),
-                settingsText = "Sponsored",
+                settingsText = null,
                 isWhatsAppAds = true,
                 isShowComments = true,
                 comments = listOf(
@@ -562,7 +564,7 @@ class PostData {
             With our fast and reliable service, your cravings are just a click away!
         """.trimIndent(),
                 keywords = listOf("Delivery Service", "Food Delivery", "Local Restaurants"),
-                settingsText = "Exclusive Offer", // Custom settings text
+                settingsText = null, // Custom settings text
                 isWhatsAppAds = true,
                 isShowComments = true,
                 comments = listOf(
@@ -625,7 +627,14 @@ class PostData {
             designer, or professional, our PCs are built to meet your needs.
         """.trimIndent(),
                 keywords = listOf("PCs", "Computer Hardware", "Gaming PC"),
-                settingsText = "Limited Time Offer",
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 isWhatsAppAds = true,
                 isShowComments = false,
                 comments = listOf(
@@ -649,7 +658,14 @@ class PostData {
                 textAds = "Craving your favorite food? We deliver!",
                 text = "Satisfy your cravings with Delicious Eats. Explore a wide range of cuisines and enjoy doorstep delivery. Order now!",
                 keywords = listOf("Food Delivery", "Cuisine", "Online Ordering"),
-                settingsText = "Exclusive Offer",
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 isWhatsAppAds = true,
                 isShowComments = false,
                 comments = listOf(
@@ -686,7 +702,14 @@ class PostData {
             dishes that will tantalize your taste buds. Reserve a table for an unforgettable dining experience.
         """.trimIndent(),
                 keywords = listOf("Restaurant", "Cuisine", "Fine Dining"),
-                settingsText = "Special Promotion",
+                settingsText = """Lorem ipsum dolor sit amet, consectetur
+                    |adipiscing elit. Nulla facilisi. Sed nec quam ac justo
+                    |feugiat sollicitudin. Vivamus vel justo
+                    |in odio eleifend hendrerit. Proin cursus,
+                    |metus ut ultrices commodo, ipsum metus auctor tortor, a
+                    |commodo ex elit eget dolor. Fusce a justo euismod
+                    |in ultricies odio, id euismod arcu. Suspendisse 
+                    |potenti. Cras euismod nisi et bibendum convallis.\n""".trimMargin(),
                 isWhatsAppAds = true,
                 isShowComments = false,
                 comments = listOf(
@@ -696,6 +719,238 @@ class PostData {
                 )
             )
         ),
+        Response.GroupPost(
+            group = GroupPostModel(
+                image = R.drawable.profileimage4,
+                userImage = R.drawable.myprofilelogo,
+                groupImage = R.drawable.imagepost2,
+                groupName = "Outdoor Enthusiasts",
+                userName = "William",
+                time = "3h",
+                numberOfComments = 5,
+                numberOfShares = 4,
+                numberOfLikes = 14,
+                icon = R.drawable.group,
+                text = "Enjoying a relaxing day at the park!",
+                keywords = listOf("park", "relaxation"),
+                settingsText = null,
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage4,
+                        comment = "I love spending time outdoors!",
+                        numberOfLikes = 2,
+                        name = "Olivia"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage5,
+                        comment = "What park is this?",
+                        numberOfLikes = 1,
+                        name = "Emma"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage7,
+                        comment = "Looks like a perfect day!",
+                        numberOfLikes = 1,
+                        name = "Jack"
+                    )
+                ),
+                isShowComments = false,
+            )
+        ),
+        Response.GroupPost(
+            group = GroupPostModel(
+                image = R.drawable.imagepost4,
+                userImage = R.drawable.profileimage8,
+                groupImage = R.drawable.imagepost7,
+                groupName = "Tech Enthusiasts",
+                userName = "Sarah",
+                time = "1d",
+                numberOfComments = 8,
+                numberOfShares = 2,
+                numberOfLikes = 20,
+                icon = R.drawable.group,
+                text = "Just attended an amazing tech conference!",
+                keywords = listOf("tech", "conference", "innovation"),
+                settingsText = "Only group members can comment",
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage8,
+                        comment = "I heard it was fantastic!",
+                        numberOfLikes = 3,
+                        name = "Mark"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage7,
+                        comment = "What were the key takeaways?",
+                        numberOfLikes = 2,
+                        name = "Emily"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage6,
+                        comment = "I wish I could have been there!",
+                        numberOfLikes = 1,
+                        name = "Alex"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage4,
+                        comment = "Let's discuss it at our next meetup!",
+                        numberOfLikes = 0,
+                        name = "Jessica"
+                    )
+                ),
+                isShowComments = false
+            )
+        ),
+        Response.GroupPost(
+            group =GroupPostModel(
+                image = R.drawable.imagepost2,
+                userImage = R.drawable.profileimage6,
+                groupImage = R.drawable.imagepost10,
+                groupName = "Food Lovers",
+                userName = "Michael",
+                time = "5h",
+                numberOfComments = 12,
+                numberOfShares = 7,
+                numberOfLikes = 32,
+                icon = R.drawable.group,
+                text = "Tried a new restaurant today, and the food was amazing!",
+                keywords = listOf("food", "restaurant", "delicious"),
+                settingsText = null,
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage5,
+                        comment = "I've been wanting to go there!",
+                        numberOfLikes = 4,
+                        name = "Lisa"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage8,
+                        comment = "What did you order?",
+                        numberOfLikes = 3,
+                        name = "David"
+                    ),
+                    Comment(
+                        userImage = R.drawable.adspost2,
+                        comment = "You always find the best places!",
+                        numberOfLikes = 2,
+                        name = "Susan"
+                    ),
+                    Comment(
+                        userImage = R.drawable.myprofilelogo,
+                        comment = "Let's plan a group outing there!",
+                        numberOfLikes = 3,
+                        name = "Ryan"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage6,
+                        comment = "I'm hungry now!",
+                        numberOfLikes = 1,
+                        name = "Amber"
+                    )
+                ),
+                isShowComments = false
+            )
+        ),
+        Response.GroupPost(
+            group =GroupPostModel(
+                image = R.drawable.adspost5,
+                userImage = R.drawable.profileimage8,
+                groupImage = R.drawable.imagepost7,
+                groupName = "Travel Enthusiasts",
+                userName = "John",
+                time = "2d",
+                numberOfComments = 10,
+                numberOfShares = 3,
+                numberOfLikes = 25,
+                icon = R.drawable.group,
+                text = "Just returned from an amazing trip to the mountains!",
+                keywords = listOf("travel", "mountains", "adventure"),
+                settingsText = "Only group members can see this post",
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage3,
+                        comment = "The photos you shared are breathtaking!",
+                        numberOfLikes = 5,
+                        name = "Linda"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage1,
+                        comment = "I need to plan a mountain trip too!",
+                        numberOfLikes = 2,
+                        name = "James"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage6,
+                        comment = "Tell us more about your adventure!",
+                        numberOfLikes = 3,
+                        name = "Emily"
+                    )
+                ),
+                isShowComments = true
+            )
+        ),
+        Response.GroupPost(
+            group =GroupPostModel(
+                image = R.drawable.adspost3,
+                userImage = R.drawable.profileimage1,
+                groupImage = R.drawable.imagepost5,
+                groupName = "Art and Creativity",
+                userName = "Anna",
+                time = "4h",
+                numberOfComments = 6,
+                numberOfShares = 2,
+                numberOfLikes = 18,
+                icon = R.drawable.group,
+                text = "Just finished a new painting today!",
+                keywords = listOf("art", "painting", "creativity"),
+                settingsText = null,
+                comments = listOf(
+                    Comment(
+                        userImage = R.drawable.profileimage8,
+                        comment = "Your art is always so inspiring!",
+                        numberOfLikes = 3,
+                        name = "Alex"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage2,
+                        comment = "Can't wait to see it! Share a photo?",
+                        numberOfLikes = 2,
+                        name = "Sophie"
+                    ),
+                    Comment(
+                        userImage = R.drawable.profileimage4,
+                        comment = "Your talent knows no bounds!",
+                        numberOfLikes = 1,
+                        name = "Lucas"
+                    )
+                ),
+                isShowComments = true
+            )
+        ),
+        Response.PeopleRecommendation(
+            people = listOf(
+                People(R.drawable.profileimage1, "Ahmed Smith", true),
+                People(R.drawable.profileimage2, "Sarah Johnson", false),
+                People(R.drawable.profileimage3, "Mohammed Brown", true),
+                People(R.drawable.profileimage4, "Fatima Davis", false),
+                People(R.drawable.profileimage5, "Ali Wilson", true),
+                People(R.drawable.profileimage6, "Layla Martinez", true),
+                People(R.drawable.profileimage7, "Ahlam White", false),
+                People(R.drawable.profileimage9, "Khaled Lee", false)
+            )
+        ),
+        Response.PeopleRecommendation(
+            people = listOf(
+                People(R.drawable.profileimage1, "Ahmed Smith", true),
+                People(R.drawable.profileimage2, "Sarah Johnson", false),
+                People(R.drawable.profileimage3, "Mohammed Brown", true),
+                People(R.drawable.profileimage4, "Fatima Davis", false),
+                People(R.drawable.profileimage5, "Ali Wilson", true),
+                People(R.drawable.profileimage6, "Layla Martinez", true),
+                People(R.drawable.profileimage7, "Ahlam White", false),
+                People(R.drawable.profileimage9, "Khaled Lee", false)
+            )
+        )
     )
 
 

@@ -2,5 +2,6 @@ package com.projectbyzakaria.facebookui.model
 
 data class People(
     val imageProfile:Int,
-    val name:String
+    val name:String,
+    val isHaveSameFriend :Boolean = false
 )

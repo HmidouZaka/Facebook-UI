@@ -4,6 +4,7 @@ data class GroupPostModel(
     val image:Int,
     val userImage:Int,
     val groupImage:Int,
+    val groupName:String,
     val userName:String,
     val time:String,
     val numberOfComments:Int,
@@ -13,5 +14,6 @@ data class GroupPostModel(
     val text:String? = null,
     val keywords :List<String> = emptyList(),
     val settingsText:String? = null,
-    val comments:List<Comment> = emptyList()
+    val comments:List<Comment> = emptyList(),
+    var isShowComments:Boolean = false
 )

@@ -78,9 +78,7 @@ fun AdsPost(
                 .heightIn(max = 300.dp),
             contentScale = ContentScale.Crop,
         )
-        if (postModel.text != null && postModel.settingsText != null) {
-            SettingText(text = postModel.settingsText)
-        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -148,6 +146,10 @@ fun AdsPost(
             }
 
 
+        }
+
+        if (postModel.text != null && postModel.settingsText != null) {
+            SettingText(text = postModel.settingsText)
         }
 
 

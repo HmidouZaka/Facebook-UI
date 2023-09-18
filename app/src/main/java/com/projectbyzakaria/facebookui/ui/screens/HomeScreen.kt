@@ -273,7 +273,9 @@ fun HomeScreen(
                                 modifier = Modifier.fillMaxSize().background(Color(0xFFA5A8AC)),
                                 contentAlignment = Alignment.Center
                             ) {
-                                AndroidView(factory = { context->
+                                AndroidView(
+                                    factory = {
+                                            context->
                                     val progressBar = LayoutInflater.from(context).inflate(R.layout.facebook_progress,null,false)
                                     progressBar
                                 }, modifier = Modifier.size(40.dp))
